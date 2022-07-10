@@ -1,0 +1,11 @@
+tested-with: GHC==9.2.2, GHC==9.0.2, GHC==8.10.7
+
+packages: */*.cabal
+
+package sized-wrapper
+
+-- package sized-wrapper-aeson
+
+-- package sized-wrapper-quickcheck
+
+-- package sized-wrapper-text
