@@ -238,9 +238,9 @@ type family (<+>) a b where
   (<+>) (AtLeast n) (AtMost m) = Between n (n + m)
   (<+>) (AtMost n) (AtLeast m) = Between m (n + m)
   (<+>) (AtLeast n) (Between m o) = Between (n + m) (n + o)
-  (<+>) (AtMost n) (Between m o) = Between (n + m) (n + o)
+  (<+>) (AtMost n) (Between m o) = Between m (n + o)
   (<+>) (Between m o) (AtLeast n) = Between (n + m) (n + o)
-  (<+>) (Between m o) (AtMost n) = Between (n + m) (n + o)
+  (<+>) (Between m o) (AtMost n) = Between m (n + o)
   (<+>) (Between n m) (Between o p) = Between (n + m) (o + p)
 
 -- | Semigroup append
