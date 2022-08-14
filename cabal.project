@@ -6,6 +6,6 @@ package sized-wrapper
 
 -- package sized-wrapper-aeson
 
--- package sized-wrapper-quickcheck
+package sized-wrapper-quickcheck
 
 -- package sized-wrapper-text

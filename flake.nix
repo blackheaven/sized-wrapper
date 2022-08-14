@@ -22,20 +22,20 @@
           haskellPackages.callCabal2nix "sized-wrapper" ./sized-wrapper rec {
             # Dependency overrides go here
           };
-        # packages.sizedty-wrapper-quickcheck = # (ref:haskell-package-def)
-        #   haskellPackages.callCabal2nix "sizedty-wrapper-quickcheck" ./sizedty-wrapper-quickcheck rec {
+        packages.sized-wrapper-quickcheck = # (ref:haskell-package-def)
+          haskellPackages.callCabal2nix "sized-wrapper-quickcheck" ./sized-wrapper-quickcheck rec {
+            # Dependency overrides go here
+            sized-wrapper = packages.sized-wrapper;
+          };
+        # packages.sized-wrapper-aeson = # (ref:haskell-package-def)
+        #   haskellPackages.callCabal2nix "sized-wrapper-aeson" ./sized-wrapper-aeson rec {
         #     # Dependency overrides go here
-        #     sizedty-wrapper = packages.sizedty-wrapper;
+        #     sized-wrapper = packages.sized-wrapper;
         #   };
-        # packages.sizedty-wrapper-aeson = # (ref:haskell-package-def)
-        #   haskellPackages.callCabal2nix "sizedty-wrapper-aeson" ./sizedty-wrapper-aeson rec {
+        # packages.sized-wrapper-text = # (ref:haskell-package-def)
+        #   haskellPackages.callCabal2nix "sized-wrapper-text" ./sized-wrapper-text rec {
         #     # Dependency overrides go here
-        #     sizedty-wrapper = packages.sizedty-wrapper;
-        #   };
-        # packages.sizedty-wrapper-text = # (ref:haskell-package-def)
-        #   haskellPackages.callCabal2nix "sizedty-wrapper-text" ./sizedty-wrapper-text rec {
-        #     # Dependency overrides go here
-        #     sizedty-wrapper = packages.sizedty-wrapper;
+        #     sized-wrapper = packages.sized-wrapper;
         #   };
 
         defaultPackage = pkgs.linkFarmFromDrvs "all-sized-wrapper" (pkgs.lib.unique (builtins.attrValues packages));
@@ -48,7 +48,9 @@
             cabal-install
             haskell-ci
           ];
-          inputsFrom = builtins.attrValues self.packages.${system};
+          inputsFrom = [
+            packages.sized-wrapper-quickcheck.env
+          ];
         };
       });
 }
