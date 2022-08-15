@@ -4,7 +4,7 @@ packages: */*.cabal
 
 package sized-wrapper
 
--- package sized-wrapper-aeson
+package sized-wrapper-aeson
 
 package sized-wrapper-quickcheck
 

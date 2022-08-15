@@ -27,11 +27,11 @@
             # Dependency overrides go here
             sized-wrapper = packages.sized-wrapper;
           };
-        # packages.sized-wrapper-aeson = # (ref:haskell-package-def)
-        #   haskellPackages.callCabal2nix "sized-wrapper-aeson" ./sized-wrapper-aeson rec {
-        #     # Dependency overrides go here
-        #     sized-wrapper = packages.sized-wrapper;
-        #   };
+        packages.sized-wrapper-aeson = # (ref:haskell-package-def)
+          haskellPackages.callCabal2nix "sized-wrapper-aeson" ./sized-wrapper-aeson rec {
+            # Dependency overrides go here
+            sized-wrapper = packages.sized-wrapper;
+          };
         # packages.sized-wrapper-text = # (ref:haskell-package-def)
         #   haskellPackages.callCabal2nix "sized-wrapper-text" ./sized-wrapper-text rec {
         #     # Dependency overrides go here
@@ -49,7 +49,7 @@
             haskell-ci
           ];
           inputsFrom = [
-            packages.sized-wrapper-quickcheck.env
+            packages.sized-wrapper-aeson.env
           ];
         };
       });
