@@ -49,12 +49,12 @@ module Data.Sized
   )
 where
 
+import Data.Foldable (toList)
+import Data.Ix (inRange)
 import Data.Kind
 import Data.Maybe (fromJust)
 import Data.Proxy
 import GHC.TypeLits
-import Data.Foldable(toList)
-import Data.Ix(inRange)
 
 -- | Sized proofed value.
 newtype Sized s a = Sized
@@ -64,6 +64,7 @@ newtype Sized s a = Sized
   deriving stock (Eq, Ord, Show)
 
 -- * Different kind of sizes
+
 -- | Unknown/any size
 data Unknown
 
@@ -200,10 +201,10 @@ instance Foldable f => SizedFromContainer (f a) where
   isAtMost n = null . drop n . toList
   isBetween n m x =
     let indexed = index x
-      in  elem n indexed && notElem (succ m) indexed
+     in elem n indexed && notElem (succ m) indexed
 
 index :: Foldable f => f a -> [Int]
-index = (0:) . zipWith const [1..] . toList
+index = (0 :) . zipWith const [1 ..] . toList
 
 -- | Give a more precise sizing
 precise :: (SizedFromContainer a, Size s) => Sized s' a -> Maybe (Sized s a)
