@@ -8,4 +8,4 @@ package sized-wrapper-aeson
 
 package sized-wrapper-quickcheck
 
--- package sized-wrapper-text
+package sized-wrapper-text

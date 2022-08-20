@@ -32,11 +32,11 @@
             # Dependency overrides go here
             sized-wrapper = packages.sized-wrapper;
           };
-        # packages.sized-wrapper-text = # (ref:haskell-package-def)
-        #   haskellPackages.callCabal2nix "sized-wrapper-text" ./sized-wrapper-text rec {
-        #     # Dependency overrides go here
-        #     sized-wrapper = packages.sized-wrapper;
-        #   };
+        packages.sized-wrapper-text = # (ref:haskell-package-def)
+          haskellPackages.callCabal2nix "sized-wrapper-text" ./sized-wrapper-text rec {
+            # Dependency overrides go here
+            sized-wrapper = packages.sized-wrapper;
+          };
 
         defaultPackage = pkgs.linkFarmFromDrvs "all-sized-wrapper" (pkgs.lib.unique (builtins.attrValues packages));
 
@@ -50,6 +50,7 @@
           ];
           inputsFrom = [
             packages.sized-wrapper-aeson.env
+            packages.sized-wrapper-text.env
           ];
         };
       });
