@@ -219,7 +219,7 @@ jobs:
         run: |
           rm -f cabal.project.local
           $CABAL v2-build $ARG_COMPILER --disable-tests --disable-benchmarks all
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: ${{ matrix.keep-sdist }}
         with:
           name: sdists
